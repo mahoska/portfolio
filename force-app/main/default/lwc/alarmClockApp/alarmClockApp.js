@@ -2,15 +2,15 @@
  * @description       : 
  * @author            : Anna Makhovskaya
  * @group             : 
- * @last modified on  : 03-24-2023
+ * @last modified on  : 03-27-2023
  * @last modified by  : Anna Makhovskaya
 **/
 import { LightningElement } from 'lwc';
 import AlarmClockAssets from '@salesforce/resourceUrl/AlarmClockAssets';
-
 export default class AlarmClockApp extends LightningElement {
 
     clockImage = AlarmClockAssets + '/AlarmClockAssets/clock.png';
+    rington = new Audio(AlarmClockAssets + '/AlarmClockAssets/Clocksound.mp3');
     currentTime = '';
     hours = [];
     minutes = [];
@@ -18,6 +18,7 @@ export default class AlarmClockApp extends LightningElement {
 
     alarmTime;
     isAlarmSet = false;
+    isAlarmTriggered = false;
 
     hourSelected;
     minSelected;
@@ -25,6 +26,10 @@ export default class AlarmClockApp extends LightningElement {
 
     get isFieldNotSelected() {
         return !(this.hourSelected && this.minSelected && this.meridianSelected);
+    }
+
+    get shakeImage() {
+        return this.isAlarmTriggered ? "shake" : '';
     }
 
     connectedCallback() {
@@ -53,7 +58,10 @@ export default class AlarmClockApp extends LightningElement {
 
             this.currentTime = `${hour}:${min}:${sec} ${ampm}`;
             if (this.alarmTime === `${hour}:${min} ${ampm}`) {
-                console.log("Alarm Triggered!");
+                //console.log("Alarm Triggered!");
+                this.isAlarmTriggered = true;
+                this.rington.play();
+                this.rington.loop = true;
             }
 
         }, 1000);
@@ -83,14 +91,27 @@ export default class AlarmClockApp extends LightningElement {
             this.meridianSelected = value;
         } else { }
 
-        console.log("this.hourSelected: ", this.hourSelected);
-        console.log("this.minSelected: ", this.minSelected);
-        console.log("this.meridianSelected: ", this.meridianSelected);
+        //console.log("this.hourSelected: ", this.hourSelected);
+        //console.log("this.minSelected: ", this.minSelected);
+        //console.log("this.meridianSelected: ", this.meridianSelected);
     }
 
     setAlarmHandler() {
         this.alarmTime = `${this.hourSelected}:${this.minSelected} ${this.meridianSelected}`;
         this.isAlarmSet = true;
     }
+
+    clearAlarmHandler() {
+        this.alarmTime = '';
+        this.isAlarmSet = false;
+        this.isAlarmTriggered = false;
+        this.rington.pause();
+        const elements = this.template.querySelectorAll('c-clock-dropdown');
+        Array.from(elements).forEach(element => {
+            element.reset("");
+        })
+    }
+
+
 
 }

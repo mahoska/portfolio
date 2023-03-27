@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Anna Makhovskaya
  * @group             : 
- * @last modified on  : 03-24-2023
+ * @last modified on  : 03-27-2023
  * @last modified by  : Anna Makhovskaya
 **/
 import { LightningElement, api } from 'lwc';
@@ -13,8 +13,8 @@ export default class ClockDropdown extends LightningElement {
     @api uniqueId = '';
 
     changeHandler(event) {
-        console.log(this.label);
-        console.log(event.target.value);
+        //console.log(this.label);
+        //console.log(event.target.value);
         this.callParent(event.target.value);
     }
 
@@ -26,4 +26,11 @@ export default class ClockDropdown extends LightningElement {
             }
         }));
     }
+
+    @api
+    reset(value) {
+        this.template.querySelector('select').value = value;
+        this.callParent(value);
+    }
+
 }
