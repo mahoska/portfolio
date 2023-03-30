@@ -44,5 +44,9 @@
         <members>*</members>
         <name>Network</name>
     </types>
+    <types>
+        <members>Survey</members>
+        <name>Settings</name>
+    </types>
     <version>56.0</version>
 </Package>
