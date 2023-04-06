@@ -1,0 +1,32 @@
+.banner{
+    background: #dcd91d;
+    max-height: 400px;
+    text-align: center;
+    padding: 32px 16px;
+}
+
+.portfolio-pic{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.name{
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.designation, .location{
+    font-size: 24px;
+    color: #243763;
+}
+
+.social-icon{
+height: 40px;
+width: 40px;
+margin: 16px 16px;
+}
+
+.cursor{
+    cursor : pointer;
+}
