@@ -2,7 +2,7 @@
   @description       : 
   @author            : Anna Makhovskaya
   @group             : 
-  @last modified on  : 04-12-2023
+  @last modified on  : 04-13-2023
   @last modified by  : Anna Makhovskaya
 -->
 <template>
@@ -17,7 +17,9 @@
                 <c-portfolio-personal-projects></c-portfolio-personal-projects>
             </lightning-tab>
             <lightning-tab label="Work Experience">
-                Work Experience Content !
+                <template if:true={recordId}>
+                    <c-portfolio-work-experience record-id={recordId}></c-portfolio-work-experience>
+                </template>
             </lightning-tab>
             <lightning-tab label="Skills">
                 Skills Content !
