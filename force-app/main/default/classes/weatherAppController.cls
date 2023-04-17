@@ -2,14 +2,15 @@
  * @description       : 
  * @author            : Anna Makhovskaya
  * @group             : 
- * @last modified on  : 03-28-2023
+ * @last modified on  : 04-17-2023
  * @last modified by  : Anna Makhovskaya
 **/
 public with sharing class weatherAppController {
 
     @AuraEnabled
     public static string getWeatherDetails(String input){
-        String url = 'https://api.openweathermap.org/data/2.5/weather?q=' + input  + '&units=metric '+ getKey();
+        //const URL = `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&units=metric&appid=${API_KEY}`;
+        String url = 'https://api.openweathermap.org/data/2.5/weather?q=' + input  + '&units=metric'+ getKey();
         String response = getResponse(url);
         return response;
     }

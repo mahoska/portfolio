@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Anna Makhovskaya
  * @group             : 
- * @last modified on  : 03-28-2023
+ * @last modified on  : 04-17-2023
  * @last modified by  : Anna Makhovskaya
 **/
 import { LightningElement } from 'lwc';
@@ -97,6 +97,7 @@ export default class WeatherApp extends LightningElement {
                 this.weatherIcon = this.rainIcon;
             } else { }
 
+            console.log("info.main:  ", info.main);
 
             this.response = {
                 city: city,
@@ -106,6 +107,9 @@ export default class WeatherApp extends LightningElement {
                 feels_like: Math.floor(feels_like),
                 humidity: `${humidity}%`
             }
+
+            console.log("this.response.temperature:  ", this.response.temperature);
+
         }
     }
 
